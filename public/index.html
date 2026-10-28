@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloudflare + Supabase App</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 16px;
+      color: #1a1a1a;
+    }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .row { display: flex; gap: 8px; }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    ul { list-style: none; padding: 0; margin: 12px 0 0; }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .empty { color: #6b7280; }
+    .error { color: #dc2626; }
+    .success { color: #16a34a; }
+  </style>
+</head>
+<body>
+  <h1>📋 Tasks</h1>
+  <div class="card">
+    <form id="taskForm" class="row">
+      <input type="text" id="taskInput" placeholder="Add a new task..." required />
+      <button type="submit">Add</button>
+    </form>
+    <ul id="taskList"></ul>
+    <p id="status" class="empty">Loading...</p>
+  </div>
+
+  <script>
+    const SUPABASE_URL = '{{SUPABASE_URL}}';
+    const SUPABASE_ANON_KEY = '{{SUPABASE_ANON_KEY}}';
+  </script>
+  <script type="module">
+    // Minimal Supabase client via CDN
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const taskForm = document.getElementById('taskForm');
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+    const status = document.getElementById('status');
+
+    async function loadTasks() {
+      status.textContent = 'Loading...';
+      status.className = 'empty';
+      const { data, error } = await supabase.from('tasks').select('*').order('created_at', { ascending: true });
+      if (error) {
+        status.textContent = 'Failed to load tasks: ' + error.message;
+        status.className = 'error';
+        return;
+      }
+      render(data || []);
+    }
+
+    function render(tasks) {
+      taskList.innerHTML = '';
+      if (!tasks.length) {
+        status.textContent = 'No tasks yet. Add one above.';
+        status.className = 'empty';
+        return;
+      }
+      status.textContent = `${tasks.length} task${tasks.length === 1 ? '' : 's'}`;
+      status.className = 'success';
+      for (const t of tasks) {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${escapeHtml(t.title)}</span><button data-id="${t.id}">Done</button>`;
+        taskList.appendChild(li);
+      }
+      taskList.querySelectorAll('button').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          await supabase.from('tasks').delete().eq('id', btn.dataset.id);
+          await loadTasks();
+        });
+      });
+    }
+
+    taskForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = taskInput.value.trim();
+      if (!title) return;
+      const { error } = await supabase.from('tasks').insert({ title });
+      if (error) {
+        status.textContent = 'Insert failed: ' + error.message;
+        status.className = 'error';
+        return;
+      }
+      taskInput.value = '';
+      await loadTasks();
+    });
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+    }
+
+    loadTasks();
+  </script>
+</body>
+</html>
