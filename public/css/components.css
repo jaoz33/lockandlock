@@ -1,0 +1,23 @@
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+.card h3 { margin: 0 0 8px; font-size: 16px; }
+.card p { margin: 0 0 10px; color: var(--muted); }
+.card button { background: var(--navy); color: #fff; border: 0; padding: 8px 12px; border-radius: 8px; margin-right: 8px; }
+.editor-shell { display: flex; flex-direction: column; height: calc(100vh - 120px); }
+.editor-topbar { display: flex; gap: 8px; align-items: center; padding: 10px; background: #eef2f7; border-bottom: 1px solid var(--border); }
+#editor-title { flex: 1; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; }
+.page-canvas { flex: 1; overflow: auto; background: #cbd5e1; padding: 24px; display: flex; justify-content: center; }
+.page-canvas [contenteditable] { outline: none; }
+.tool-drawer { background: #0f172a; color: #e2e8f0; }
+.drawer-handle { padding: 10px; text-align: center; cursor: pointer; background: #1e293b; }
+.tool-panels { display: none; padding: 10px; gap: 10px; flex-wrap: wrap; }
+.drawer-open .tool-panels { display: flex; }
+.tool-group { display: flex; gap: 6px; }
+.tool-group button { background: #334155; color: #f1f5f9; border: 0; padding: 6px 10px; border-radius: 6px; }
+.modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+.modal-dialog { position: relative; background: #fff; padding: 20px; border-radius: 12px; max-width: 400px; width: 90%; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.toast-container { position: fixed; right: 16px; top: 16px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; }
+.toast { background: #0f172a; color: #fff; padding: 10px 14px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.toast-exit { opacity: 0; transition: opacity 0.3s; }
+@media (max-width: 640px) { .header-inner { flex-wrap: wrap; } .main-nav { width: 100%; justify-content: flex-start; } }

@@ -1,0 +1,14 @@
+.container { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--navy); color: #fff; border-bottom: 1px solid #1e3a5f; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; padding-bottom: 12px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+.wordmark { font-weight: 700; letter-spacing: -0.02em; font-size: 18px; }
+.wordmark .accent { color: var(--teal); }
+.main-nav { display: flex; gap: 16px; }
+.main-nav a { color: #cbd5e1; text-decoration: none; font-weight: 500; }
+.main-nav a:hover { color: #fff; }
+.auth-area { display: flex; gap: 8px; align-items: center; color: #e2e8f0; font-size: 14px; }
+.auth-area button { background: var(--teal); color: #fff; border: 0; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+.ad-slot { text-align: center; padding: 10px; min-height: 60px; background: #eef2f7; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.ad-placeholder { color: var(--muted); font-size: 12px; }
+.site-footer { text-align: center; padding: 20px; color: var(--muted); font-size: 12px; }

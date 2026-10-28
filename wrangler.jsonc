@@ -1,5 +1,5 @@
 {
-  "name": "cf-supabase-app",
+  "name": "parselock",
   "compatibility_date": "2025-01-01",
-  "pages_build_output_dir": "public"
+  "pages_build_output_dir": "./public"
 }

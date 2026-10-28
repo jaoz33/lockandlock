@@ -1,5 +1,12 @@
 {
-  "name": "cf-supabase-app",
-  "version": "1.0.0",
-  "private": true
+  "name": "parselock",
+  "version": "1.0.0-phase1",
+  "private": true,
+  "scripts": {
+    "dev": "npx wrangler pages dev ./public",
+    "deploy": "npx wrangler pages deploy ./public"
+  },
+  "devDependencies": {
+    "wrangler": "^4.43.0"
+  }
 }
