@@ -1,0 +1,21 @@
+.editor-shell { display: flex; flex-direction: column; height: calc(100vh - 120px); background: #e2e8f0; }
+.editor-topbar { display: flex; gap: 8px; align-items: center; padding: 10px; background: #f1f5f9; border-bottom: 1px solid #cbd5e1; flex-wrap: wrap; }
+.editor-topbar .input { flex: 1; min-width: 200px; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
+.page-canvas { flex: 1; overflow: auto; padding: 24px; display: flex; justify-content: center; }
+.page-canvas [contenteditable] { outline: none; background: #fff; width: 8.5in; min-height: 11in; padding: 1in; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+.tool-drawer { background: #0f172a; color: #e2e8f0; border-top: 1px solid #1e293b; }
+.drawer-handle { padding: 10px; text-align: center; cursor: pointer; background: #1e293b; font-weight: 600; }
+.tool-panels { display: none; padding: 10px; gap: 10px; flex-wrap: wrap; }
+.tool-drawer.drawer-open .tool-panels { display: flex; }
+.tool-group { display: flex; gap: 6px; align-items: center; }
+.tool-group button { background: #334155; color: #f1f5f9; border: 0; padding: 6px 10px; border-radius: 6px; font-size: 12px; }
+.sheet-panel { background: #fff; border-top: 1px solid #cbd5e1; padding: 12px; }
+.sheet-toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+.sheet-preview { max-height: 200px; overflow: auto; background: #f8fafc; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; }
+.btn { padding: 8px 12px; border: 0; border-radius: 6px; background: #e2e8f0; color: #0f172a; font-size: 14px; }
+.btn-primary { background: #0B1F3A; color: #fff; }
+.btn-accent { background: #14B8A6; color: #fff; }
+.btn-small { padding: 6px 10px; font-size: 12px; }
+.toolbar { display: flex; gap: 10px; margin-bottom: 16px; }
+.empty { color: #64748b; }
+.card-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
