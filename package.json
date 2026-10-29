@@ -8,5 +8,13 @@
   },
   "devDependencies": {
     "wrangler": "^4.43.0"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261023.1": true
   }
 }
